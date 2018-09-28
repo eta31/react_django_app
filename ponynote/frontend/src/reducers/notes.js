@@ -1,10 +1,14 @@
 const initialState = [];
 
 
-export default function notes(state = initialState, action) {
+export default function notes(state=initialState, action) {
     let noteList = state.slice();
 
     switch (action.type) {
+
+        case 'FETCH_NOTES':
+            return [...state, ...action.notes];
+
         case 'ADD_NOTE':
             return [...state, action.note];
 
@@ -17,8 +21,6 @@ export default function notes(state = initialState, action) {
         case 'DELETE_NOTE':
             noteList.splice(action.index, 1);
             return noteList;
-        case 'FETCH_NOTES':
-            return [...state, ...action.notes];
 
         default:
             return state;
